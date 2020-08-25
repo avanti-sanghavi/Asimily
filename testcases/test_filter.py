@@ -23,6 +23,7 @@ class FilterTest(unittest.TestCase):
         """
         Validate upon selecting "Mobile" as a "Type", only mobile devices are shown in map
         """
+        time.sleep(2)
         MainPage(self.driver).wait_for_main_page()
         MainPage(self.driver).select_mobile_filter()
         time.sleep(1)
@@ -33,10 +34,14 @@ class FilterTest(unittest.TestCase):
         """
         Validate "manufacturer" dropdown values update as we select "Mobile" from "Type"
         """
+        time.sleep(2)
         MainPage(self.driver).wait_for_main_page()
         MainPage(self.driver).select_mobile_filter()
         manufacturer_list = MainPage(self.driver).check_mobile_manufacturer_filter()
         self.assertEqual(manufacturer_list, ['all', 'Dell', 'HP', 'Nokia', 'Motorola', 'Google'])
+
+    def tearDown(self):
+        self.driver.quit()
 
 
 if __name__ == "__main__":
